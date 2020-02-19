@@ -1,0 +1,26 @@
+#!groovy
+
+@Library("Infrastructure")
+import uk.gov.hmcts.contino.ProjectBranch
+
+def type = "java"
+
+def product = "adoption"
+def component = "backend-service"
+
+static Map<String, Object> secret(String secretName, String envVariable) {
+  [ $class: 'AzureKeyVaultSecret',
+    secretType: 'Secret',
+    name: secretName,
+    envVariable: envVariable
+  ]
+}
+
+withPipeline(type, product, component) {
+
+  enableAksStagingDeployment()
+  installCharts()
+  enableSlackNotifications('#fpla_adoption_tech')
+
+  env.PROXY_SERVER = "proxyout.reform.hmcts.net:8080"
+}
