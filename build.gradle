@@ -189,7 +189,7 @@ test {
 mainClassName = 'uk.gov.hmcts.reform.adoption.Application'
 
 bootJar {
-  archiveFileName = 'adoption-service.jar'
+  archiveFileName = 'adoption-backend.jar'
 
   manifest {
     attributes('Implementation-Version': project.version.toString())
