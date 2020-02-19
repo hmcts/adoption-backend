@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.demo.config;
+package uk.gov.hmcts.reform.adoption.config;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

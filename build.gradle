@@ -186,10 +186,10 @@ test {
   failFast = true
 }
 
-mainClassName = 'uk.gov.hmcts.reform.demo.Application'
+mainClassName = 'uk.gov.hmcts.reform.adoption.Application'
 
 bootJar {
-  archiveName = 'spring-boot-template.jar'
+  archiveFileName = 'adoption-service.jar'
 
   manifest {
     attributes('Implementation-Version': project.version.toString())
