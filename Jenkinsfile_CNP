@@ -20,7 +20,7 @@ withPipeline(type, product, component) {
 
   enableAksStagingDeployment()
   installCharts()
-  enableSlackNotifications('#adopt-pipeline-notifications')
+  enableSlackNotifications('#fpla_adoption_tech')
 
   env.PROXY_SERVER = "proxyout.reform.hmcts.net:8080"
 }

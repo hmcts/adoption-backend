@@ -12,5 +12,5 @@ def product = "adoption"
 def component = "backend"
 
 withNightlyPipeline(type, product, component) {
-  enableSlackNotifications('#adopt-pipeline-notifications')
+  enableSlackNotifications('#fpla_adoption_tech')
 }
