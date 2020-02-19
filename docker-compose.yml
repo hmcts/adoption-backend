@@ -1,14 +1,14 @@
 version: '2.1'
 
 services:
-  adoption-backend-service:
+  adoption-backend:
     build:
       context: .
       args:
         - http_proxy
         - https_proxy
         - no_proxy
-    image: hmctspublic.azurecr.io/adoption/adoption-backend-service
+    image: hmctspublic.azurecr.io/adoption/backend
     environment:
       # these environment variables are used by java-logging library
       - ROOT_APPENDER

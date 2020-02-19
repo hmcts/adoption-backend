@@ -1,7 +1,7 @@
 apiVersion: v1
 appVersion: "1.0"
 description: A Helm chart for adoption-backend-service App
-name: adoption-backend-service
+name: adoption-backend
 home: https://github.com/hmcts/adoption-backend
 version: 0.0.1
 maintainers:

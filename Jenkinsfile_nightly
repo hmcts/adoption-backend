@@ -9,8 +9,8 @@ properties([
 
 def type = "java"
 def product = "adoption"
-def component = "backend-service"
+def component = "backend"
 
 withNightlyPipeline(type, product, component) {
-  enableSlackNotifications('#rpe-build-notices')
+  enableSlackNotifications('#adopt-pipeline-notifications')
 }
