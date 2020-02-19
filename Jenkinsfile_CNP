@@ -6,7 +6,7 @@ import uk.gov.hmcts.contino.ProjectBranch
 def type = "java"
 
 def product = "adoption"
-def component = "backend-service"
+def component = "backend"
 
 static Map<String, Object> secret(String secretName, String envVariable) {
   [ $class: 'AzureKeyVaultSecret',
