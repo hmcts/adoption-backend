@@ -74,7 +74,7 @@ checkstyle {
   maxWarnings = 0
   toolVersion = '8.29'
   // need to set configDir to rootDir otherwise submodule will use submodule/config/checkstyle
-  configDir = new File(rootDir, 'config/checkstyle')
+  configDir = file("$rootDir/config/checkstyle")
 }
 
 pmd {
@@ -91,7 +91,7 @@ jacocoTestReport {
   reports {
     xml.enabled = true
     csv.enabled = false
-    xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+    xml.destination file("${project.buildDir}/reports/jacoco/test/jacocoTestReport.xml")
   }
 }
 
@@ -99,7 +99,7 @@ project.tasks['sonarqube'].dependsOn jacocoTestReport
 
 sonarqube {
   properties {
-    property "sonar.projectName", "Reform :: adoption-backend"
+    property "sonar.projectName", "Adoption :: adoption-backend"
     property "sonar.projectKey", "uk.gov.hmcts.reform:adoption-backend"
     property "sonar.coverage.jacoco.xmlReportPaths", "${jacocoTestReport.reports.xml.destination.path}"
   }
@@ -126,6 +126,10 @@ dependencyCheck {
   // range of 0-10 fails the build, anything greater and it doesn't fail the build
   failBuildOnCVSS = System.getProperty('dependencyCheck.failBuild') == 'true' ? 0 : 11
   suppressionFile = 'config/owasp/suppressions.xml'
+  analyzers {
+    // Disable scanning of .NET related binaries
+    assemblyEnabled = false
+  }
 }
 
 dependencyManagement {
@@ -189,7 +193,7 @@ test {
 mainClassName = 'uk.gov.hmcts.reform.adoption.Application'
 
 bootJar {
-  archiveFileName = 'adoption-backend.jar'
+  archiveName = 'adoption-backend.jar'
 
   manifest {
     attributes('Implementation-Version': project.version.toString())
