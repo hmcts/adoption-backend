@@ -152,9 +152,7 @@ def versions = [
   junit            : '5.5.0',
   reformLogging    : '5.1.1',
   springBoot       : springBoot.class.package.implementationVersion,
-  springfoxSwagger : '2.9.2',
-  serenity         : '2.1.7',
-  restAssured      : '4.2.0'
+  springfoxSwagger : '2.9.2'
 ]
 
 dependencies {
@@ -178,9 +176,6 @@ dependencies {
   testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junit
 
   testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
-  testCompile group: 'io.rest-assured', name: 'rest-assured', version: versions.restAssured
-  testCompile group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
-  testCompile group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
 
   integrationTestCompile sourceSets.main.runtimeClasspath
   integrationTestCompile sourceSets.test.runtimeClasspath
