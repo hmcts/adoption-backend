@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.adoption;
 
 import org.junit.Test;
-import org.junit.jupiter.api.Disabled;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -9,8 +8,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLParameters;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
@@ -19,7 +19,6 @@ import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpStatus.OK;
 
-@Disabled
 public class SmokeTest {
     private final String targetInstance =
         defaultIfBlank(System.getenv("TEST_URL"), "http://localhost:4550");
@@ -31,13 +30,15 @@ public class SmokeTest {
         SSLContext sslContext = SSLContext.getInstance("SSL");
         sslContext.init(null, trustAllCerts, new SecureRandom());
 
-        SSLParameters sslParams = new SSLParameters();
-        // This should prevent host validation
-        sslParams.setEndpointIdentificationAlgorithm("");
+        HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
+
+        HostnameVerifier allHostsValid = (hostname, session) -> true;
+
+        // set the  allTrusting verifier
+        HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
 
         HttpClient httpClient = HttpClient.newBuilder()
             .sslContext(sslContext)
-            .sslParameters(sslParams)
             .build();
 
         HttpRequest request = HttpRequest.newBuilder()
