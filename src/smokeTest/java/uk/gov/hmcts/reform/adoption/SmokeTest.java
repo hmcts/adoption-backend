@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.adoption;
 
 import io.restassured.RestAssured;
-import net.serenitybdd.rest.SerenityRest;
 import org.junit.Test;
 
 import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
@@ -20,10 +19,10 @@ public class SmokeTest {
         RestAssured.baseURI = targetInstance;
         RestAssured.useRelaxedHTTPSValidation();
 
-        String response = SerenityRest
-            .when()
+        String response = RestAssured
             .get("/health")
             .then()
+            .assertThat()
             .statusCode(OK.value())
             .and()
             .extract().body().asString();
