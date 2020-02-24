@@ -1,15 +1,11 @@
 package uk.gov.hmcts.reform.adoption;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import javax.net.ssl.SSLContext;
