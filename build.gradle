@@ -12,8 +12,6 @@ plugins {
 
 apply plugin: 'info.solidsoft.pitest'
 apply plugin: 'org.owasp.dependencycheck'
-apply plugin: 'project-report'
-apply plugin: 'idea'
 
 group = 'uk.gov.hmcts.reform'
 version = '0.0.1'
@@ -184,7 +182,6 @@ dependencies {
   functionalTestCompile sourceSets.main.runtimeClasspath
 
   smokeTestCompile sourceSets.main.runtimeClasspath
-  smokeTestCompile sourceSets.test.runtimeClasspath
 }
 
 test {
