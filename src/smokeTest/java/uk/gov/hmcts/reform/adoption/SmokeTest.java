@@ -26,37 +26,17 @@ public class SmokeTest {
     private final String targetInstance =
         defaultIfBlank(System.getenv("TEST_URL"), "http://localhost:4550");
 
-    private SSLContext sslContext;
-    private SSLParameters sslParams;
+    @Test
+    public void shouldProveAppIsRunningAndHealthy() throws Exception {
+        TrustManager[] trustAllCerts = getTrustManagers();
 
-    @BeforeEach
-    void setup() throws NoSuchAlgorithmException, KeyManagementException {
-        TrustManager[] trustAllCerts = new TrustManager[] {
-            new X509TrustManager() {
-                public X509Certificate[] getAcceptedIssuers() {
-                    return null;
-                }
-
-                public void checkClientTrusted(
-                    X509Certificate[] certs, String authType) {
-                }
-
-                public void checkServerTrusted(
-                    X509Certificate[] certs, String authType) {
-                }
-            }
-        };
-
-        sslContext = SSLContext.getInstance("SSL");
+        SSLContext sslContext = SSLContext.getInstance("SSL");
         sslContext.init(null, trustAllCerts, new SecureRandom());
 
-        sslParams = new SSLParameters();
+        SSLParameters sslParams = new SSLParameters();
         // This should prevent host validation
         sslParams.setEndpointIdentificationAlgorithm("");
-    }
 
-    @Test
-    public void shouldProveAppIsRunningAndHealthy() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newBuilder()
             .sslContext(sslContext)
             .sslParameters(sslParams)
@@ -75,5 +55,23 @@ public class SmokeTest {
 
         assertThat(httpResponse.body())
             .contains("UP");
+    }
+
+    private TrustManager[] getTrustManagers() {
+        return new TrustManager[] {
+            new X509TrustManager() {
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+
+                public void checkClientTrusted(
+                    X509Certificate[] certs, String authType) {
+                }
+
+                public void checkServerTrusted(
+                    X509Certificate[] certs, String authType) {
+                }
+            }
+        };
     }
 }
