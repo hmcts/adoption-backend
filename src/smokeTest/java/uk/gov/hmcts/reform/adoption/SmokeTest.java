@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.adoption;
 
 import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -18,6 +19,7 @@ import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpStatus.OK;
 
+@Disabled
 public class SmokeTest {
     private final String targetInstance =
         defaultIfBlank(System.getenv("TEST_URL"), "http://localhost:4550");
