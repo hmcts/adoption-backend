@@ -8,8 +8,12 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import javax.net.ssl.HttpsURLConnection;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLParameters;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
@@ -22,36 +26,44 @@ public class SmokeTest {
     private final String targetInstance =
         defaultIfBlank(System.getenv("TEST_URL"), "http://localhost:4550");
 
+    private SSLContext sslContext;
+    private SSLParameters sslParams;
+
     @BeforeEach
-    void setup() throws Exception {
-        // Create a trust manager that does not validate certificate chains
+    void setup() throws NoSuchAlgorithmException, KeyManagementException {
         TrustManager[] trustAllCerts = new TrustManager[] {
             new X509TrustManager() {
-                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                public X509Certificate[] getAcceptedIssuers() {
                     return null;
                 }
 
                 public void checkClientTrusted(
-                    java.security.cert.X509Certificate[] certs, String authType) {
+                    X509Certificate[] certs, String authType) {
                 }
 
                 public void checkServerTrusted(
-                    java.security.cert.X509Certificate[] certs, String authType) {
+                    X509Certificate[] certs, String authType) {
                 }
             }
         };
 
-        // Install the all-trusting trust manager
-        SSLContext sc = SSLContext.getInstance("SSL");
-        sc.init(null, trustAllCerts, new java.security.SecureRandom());
-        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+        sslContext = SSLContext.getInstance("SSL");
+        sslContext.init(null, trustAllCerts, new SecureRandom());
+
+        sslParams = new SSLParameters();
+        // This should prevent host validation
+        sslParams.setEndpointIdentificationAlgorithm("");
     }
 
     @Test
     public void shouldProveAppIsRunningAndHealthy() throws IOException, InterruptedException {
-        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpClient httpClient = HttpClient.newBuilder()
+            .sslContext(sslContext)
+            .sslParameters(sslParams)
+            .build();
 
         HttpRequest request = HttpRequest.newBuilder()
+            .GET()
             .uri(URI.create(targetInstance + "/health"))
             .build();
 
