@@ -1,6 +1,4 @@
-provider "azurerm" {
-  features {}
-}
+provider "azurerm" {}
 
 locals {
   instance_size = "${var.env == "prod" || var.env == "sprod" || var.env == "aat" ? "I2" : "I1"}"
@@ -11,15 +9,15 @@ locals {
 
 resource "azurerm_resource_group" "rg" {
   name     = "${var.product}-${var.component}-${var.env}"
-  location = var.location
+  location = "${var.location}"
 
-  tags = var.common_tags
+  tags = "${var.common_tags}"
 }
 
 resource "azurerm_application_insights" "appinsights" {
   name                = "${var.product}-appinsights-${var.env}"
-  location            = var.appinsights_location
-  resource_group_name = azurerm_resource_group.rg.name
+  location            = "${var.appinsights_location}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
   application_type    = "Web"
 
   tags = var.common_tags
@@ -37,5 +35,5 @@ module "key-vault" {
   common_tags             = "${var.common_tags}"
 
   #aks migration
-  managed_identity_object_id = var.managed_identity_object_id
+  managed_identity_object_id = "${var.managed_identity_object_id}"
 }
