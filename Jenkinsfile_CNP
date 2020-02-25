@@ -19,8 +19,13 @@ static Map<String, Object> secret(String secretName, String envVariable) {
 withPipeline(type, product, component) {
 
   enableAksStagingDeployment()
+  disableLegacyDeployment()
   installCharts()
   enableSlackNotifications('#fpla_adoption_tech')
 
   env.PROXY_SERVER = "proxyout.reform.hmcts.net:8080"
+
+  before('smoketest:preview') {
+    env.URL="https://adoption-backend-pr-${CHANGE_ID}.service.core-compute-preview.internal"
+  }
 }
