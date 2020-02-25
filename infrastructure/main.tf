@@ -1,6 +1,5 @@
 provider "azurerm" {
-  # See -> https://github.com/terraform-providers/terraform-provider-azurerm/issues/5867#issuecomment-590532197
-  version = "=2.0.0"
+  version = "1.21.0"
   features {}
 }
 
