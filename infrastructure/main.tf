@@ -19,48 +19,48 @@ locals {
 
 resource "azurerm_resource_group" "rg" {
   name     = "${var.product}-${var.component}-${var.env}"
-  location = "${var.location}"
+  location = var.location
 
-  tags = "${var.common_tags}"
+  tags = var.common_tags
 }
 
 resource "azurerm_application_insights" "appinsights" {
   name                = "${var.product}-appinsights-${var.env}"
-  location            = "${var.appinsights_location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  location            = var.appinsights_location
+  resource_group_name = azurerm_resource_group.rg.name
   application_type    = "Web"
 
-  tags = "${var.common_tags}"
+  tags = var.common_tags
 }
 
 
 module "key-vault" {
   source                  = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
   name                    = "${var.product}-${var.env}"
-  product                 = "${var.product}"
-  env                     = "${var.env}"
-  tenant_id               = "${var.tenant_id}"
-  object_id               = "${var.jenkins_AAD_objectId}"
-  resource_group_name     = "${azurerm_resource_group.rg.name}"
+  product                 = var.product
+  env                     = var.env
+  tenant_id               = var.tenant_id
+  object_id               = var.jenkins_AAD_objectId
+  resource_group_name     = azurerm_resource_group.rg.name
   product_group_object_id = "78fd709b-45c7-42f1-8411-130434575920"
-  common_tags             = "${var.common_tags}"
+  common_tags             = var.common_tags
 
   #aks migration
-  managed_identity_object_id = "${var.managed_identity_object_id}"
+  managed_identity_object_id = var.managed_identity_object_id
 }
 
 module "adoption-backend" {
   source              = "git@github.com:hmcts/cnp-module-webapp?ref=master"
-  enable_ase          = "${var.enable_ase}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  enable_ase          = var.enable_ase
+  resource_group_name = azurerm_resource_group.rg.name
   product             = "${var.product}-${var.component}"
-  location            = "${var.location}"
-  env                 = "${var.env}"
-  ilbIp               = "${var.ilbIp}"
-  subscription        = "${var.subscription}"
-  instance_size       = "${local.instance_size}"
-  capacity            = "${local.capacity}"
-  common_tags         = "${var.common_tags}"
+  location            = var.location
+  env                 = var.env
+  ilbIp               = var.ilbIp
+  subscription        = var.subscription
+  instance_size       = local.instance_size
+  capacity            = local.capacity
+  common_tags         = var.common_tags
   java_version        = "11"
 
   app_settings = {
