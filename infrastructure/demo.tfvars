@@ -1,6 +1,6 @@
 idam_api_url = "https://idam-api.demo.platform.hmcts.net"
 
-idam_client_id = "adoption"
+idam_client_id = "adoption-backend"
 
 security_enabled = "true"
 idam_token_issuer_uri = "https://forgerock-am.service.core-compute-idam-demo.internal:8443/openam/oauth2/hmcts"

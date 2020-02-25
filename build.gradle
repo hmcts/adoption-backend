@@ -72,15 +72,8 @@ task awaitApplicationReadiness(type: Exec, description: 'Awaits until applicatio
   commandLine './bin/configurer/utils/wait-for.sh', System.env.URL
 }
 
-static def inStrictOrder(Task... tasks) {
-  for (int i = 0; i < tasks.size() - 1; i++) {
-    tasks[i + 1].mustRunAfter(tasks[i])
-  }
-  return tasks
-}
-
 task smoke(description: 'Runs the smoke tests.') {
-  dependsOn(inStrictOrder(awaitApplicationReadiness))
+  dependsOn(awaitApplicationReadiness)
 }
 
 checkstyle {
@@ -160,7 +153,6 @@ repositories {
 def versions = [
   junit            : '5.5.0',
   reformLogging    : '5.1.1',
-  springBoot       : '2.2.4.RELEASE',
   springfoxSwagger : '2.9.2'
 ]
 

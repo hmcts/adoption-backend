@@ -15,7 +15,6 @@ locals {
   IDAM_S2S_AUTH_URL       = "http://rpe-service-auth-provider-${local.local_env}.service.${local.local_ase}.internal"
   DOCUMENT_MANAGEMENT_URL = "http://dm-store-${local.local_env}.service.${local.local_ase}.internal"
   CORE_CASE_DATA_API_URL  = "http://ccd-data-store-api-${local.local_env}.service.${local.local_ase}.internal"
-  DOCMOSIS_API_URL        = "https://docmosis-development.platform.hmcts.net"
 }
 
 resource "azurerm_resource_group" "rg" {
