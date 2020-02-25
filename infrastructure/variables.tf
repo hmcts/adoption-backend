@@ -81,8 +81,3 @@ variable "deployment_namespace" {
   default = ""
 }
 
-variable "features" {
-  type    = string
-  default = ""
-}
-

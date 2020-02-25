@@ -1,4 +1,6 @@
-provider "azurerm" {}
+provider "azurerm" {
+  features {}
+}
 
 locals {
   ase_name = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
