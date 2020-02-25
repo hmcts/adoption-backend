@@ -19,6 +19,7 @@ static Map<String, Object> secret(String secretName, String envVariable) {
 withPipeline(type, product, component) {
 
   enableAksStagingDeployment()
+  disableLegacyDeployment()
   installCharts()
   enableSlackNotifications('#fpla_adoption_tech')
 
