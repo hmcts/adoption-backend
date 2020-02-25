@@ -1,4 +1,6 @@
 provider "azurerm" {
+  # See -> https://github.com/terraform-providers/terraform-provider-azurerm/issues/5867#issuecomment-590532197
+  version = "=2.0.0"
   features {}
 }
 
@@ -20,7 +22,7 @@ resource "azurerm_application_insights" "appinsights" {
   name                = "${var.product}-appinsights-${var.env}"
   location            = var.appinsights_location
   resource_group_name = azurerm_resource_group.rg.name
-  application_type    = "Web"
+  application_type    = "java"
 
   tags = var.common_tags
 }
