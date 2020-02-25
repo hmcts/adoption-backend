@@ -48,24 +48,3 @@ module "key-vault" {
   #aks migration
   managed_identity_object_id = var.managed_identity_object_id
 }
-
-module "adoption-backend" {
-  source              = "git@github.com:hmcts/cnp-module-webapp?ref=master"
-  enable_ase          = var.enable_ase
-  resource_group_name = azurerm_resource_group.rg.name
-  product             = "${var.product}-${var.component}"
-  location            = var.location
-  env                 = var.env
-  ilbIp               = var.ilbIp
-  subscription        = var.subscription
-  instance_size       = local.instance_size
-  capacity            = local.capacity
-  common_tags         = var.common_tags
-  java_version        = "11"
-
-  app_settings = {
-
-    LOGBACK_REQUIRE_ALERT_LEVEL = false
-    LOGBACK_REQUIRE_ERROR_CODE  = false
-  }
-}
