@@ -20,7 +20,7 @@ resource "azurerm_application_insights" "appinsights" {
   resource_group_name = "${azurerm_resource_group.rg.name}"
   application_type    = "Web"
 
-  tags = var.common_tags
+  tags = "${var.common_tags}"
 }
 
 module "key-vault" {
