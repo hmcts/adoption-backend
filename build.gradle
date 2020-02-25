@@ -69,7 +69,7 @@ task integration(type: Test, description: 'Runs the integration tests.', group: 
 }
 
 task awaitApplicationReadiness(type: Exec, description: 'Awaits until application is ready.') {
-  commandLine '../bin/configurer/utils/wait-for.sh', System.env.URL
+  commandLine './bin/configurer/utils/wait-for.sh', System.env.URL
 }
 
 static def inStrictOrder(Task... tasks) {
