@@ -1,4 +1,5 @@
 provider "azurerm" {
+  version = "1.21.0"
   features {}
 }
 
@@ -20,7 +21,7 @@ resource "azurerm_application_insights" "appinsights" {
   name                = "${var.product}-appinsights-${var.env}"
   location            = var.appinsights_location
   resource_group_name = azurerm_resource_group.rg.name
-  application_type    = "Web"
+  application_type    = "java"
 
   tags = var.common_tags
 }
