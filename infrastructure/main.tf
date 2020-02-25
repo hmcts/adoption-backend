@@ -1,17 +1,16 @@
 provider "azurerm" {
+  #
+  version = "=2.0.0"
   features {}
 }
 
 locals {
-  ase_name = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
 
   instance_size = "${var.env == "prod" || var.env == "sprod" || var.env == "aat" ? "I2" : "I1"}"
   capacity      = "${var.env == "prod" || var.env == "sprod" || var.env == "aat" ? 2 : 1}"
 
   local_env = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview") ? "aat" : "saat" : var.env}"
   local_ase = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview") ? "core-compute-aat" : "core-compute-saat" : local.ase_name}"
-
-  vault_name = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview") ? "${var.raw_product}-aat" : "${var.raw_product}-saat" : "${var.raw_product}-${var.env}"}"
 
   # URLs
   IDAM_S2S_AUTH_URL       = "http://rpe-service-auth-provider-${local.local_env}.service.${local.local_ase}.internal"
