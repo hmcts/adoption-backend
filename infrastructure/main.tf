@@ -25,7 +25,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 resource "azurerm_application_insights" "appinsights" {
-  name                = "${var.product}-${var.component}-appinsights-${var.env}"
+  name                = "${var.product}-appinsights-${var.env}"
   location            = "${var.appinsights_location}"
   resource_group_name = "${azurerm_resource_group.rg.name}"
   application_type    = "Web"
@@ -36,7 +36,7 @@ resource "azurerm_application_insights" "appinsights" {
 
 module "key-vault" {
   source                  = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
-  name                    = "adoption-${var.env}"
+  name                    = "${var.product}-${var.env}"
   product                 = "${var.product}"
   env                     = "${var.env}"
   tenant_id               = "${var.tenant_id}"
