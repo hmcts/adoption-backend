@@ -186,14 +186,14 @@ dependencies {
 
   testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
 
-  integrationTestCompile sourceSets.main.runtimeClasspath
-  integrationTestCompile sourceSets.test.runtimeClasspath
+  integrationTestCompile configurations.testRuntime {
+    exclude group: 'org.springframework.cloud', module: 'spring-cloud-starter-netflix-hystrix'
+    exclude group: 'io.springfox'
+  }
 
-  functionalTestCompile sourceSets.main.runtimeClasspath
-  functionalTestCompile sourceSets.test.runtimeClasspath
+  functionalTestCompile configurations.runtime
 
-  smokeTestCompile sourceSets.main.runtimeClasspath
-  smokeTestCompile sourceSets.test.runtimeClasspath
+  smokeTestCompile configurations.runtime
 }
 
 test {
