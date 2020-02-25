@@ -1,6 +1,4 @@
-provider "azurerm" {
-  features {}
-}
+provider "azurerm" {}
 
 locals {
   instance_size = "${var.env == "prod" || var.env == "sprod" || var.env == "aat" ? "I2" : "I1"}"

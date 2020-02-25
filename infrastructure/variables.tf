@@ -1,9 +1,9 @@
 variable "product" {
-  type = string
+  type = "string"
 }
 
 variable "raw_product" {
-  type    = string
+  type    = "string"
   default = "adoption"    // jenkins-library overrides product for PRs and adds e.g. pr-1-adoption
 }
 
@@ -16,7 +16,7 @@ variable "location" {
 }
 
 variable "env" {
-  type = string
+  type = "string"
 }
 
 variable "ilbIp" {}
@@ -24,7 +24,7 @@ variable "ilbIp" {}
 variable "subscription" {}
 
 variable "common_tags" {
-  type = map
+  type = "map"
 }
 
 variable "team_contact" {
@@ -40,7 +40,7 @@ variable "jenkins_AAD_objectId" {
 }
 
 variable "idam_api_url" {
-  type = string
+  type = "string"
 }
 
 variable "managed_identity_object_id" {
@@ -52,32 +52,27 @@ variable "enable_ase" {
 }
 
 variable "appinsights_location" {
-  type        = string
+  type        = "string"
   default     = "West Europe"
   description = "Location for Application Insights"
 }
 
 variable "idam_client_id" {
-  type = string
+  type = "string"
 }
 
 variable "security_enabled" {
-  type = string
+  type = "string"
   default = "false"
 }
 
 variable "idam_token_issuer_uri" {
-  type    = string
+  type    = "string"
   default = ""
 }
 
 variable "idam_token_jwk_set_uri" {
-  type    = string
-  default = ""
-}
-
-variable "deployment_namespace" {
-  type    = string
+  type    = "string"
   default = ""
 }
 
