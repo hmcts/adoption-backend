@@ -68,12 +68,9 @@ task integration(type: Test, description: 'Runs the integration tests.', group: 
   // environment("APPINSIGHTS_INSTRUMENTATIONKEY", "test-key")
 }
 
-task awaitApplicationReadiness(type: Exec, description: 'Awaits until application is ready.') {
-  commandLine './bin/configurer/utils/wait-for.sh', System.env.URL
-}
-
-task smoke(description: 'Runs the smoke tests.') {
-  dependsOn(awaitApplicationReadiness)
+task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verification') {
+  testClassesDirs = sourceSets.smokeTest.output.classesDirs
+  classpath = sourceSets.smokeTest.runtimeClasspath
 }
 
 checkstyle {
@@ -183,7 +180,8 @@ dependencies {
 
   functionalTestCompile configurations.runtime
 
-  smokeTestCompile configurations.runtime
+  smokeTestCompile sourceSets.main.runtimeClasspath
+  smokeTestCompile sourceSets.test.runtimeClasspath
 }
 
 test {
