@@ -18,10 +18,12 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import static java.net.http.HttpResponse.BodyHandlers;
+import static org.apache.commons.lang3.StringUtils.defaultIfBlank;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpStatus.OK;
 
 public class SmokeTest {
+    private final String targetInstance = defaultIfBlank(System.getenv("URL"), "http://localhost:4550");
 
     @Test
     public void shouldProveAppIsRunningAndHealthy() throws NoSuchAlgorithmException, KeyManagementException,
@@ -44,7 +46,7 @@ public class SmokeTest {
 
         HttpRequest request = HttpRequest.newBuilder()
             .GET()
-            .uri(URI.create("http://localhost:4550/health"))
+            .uri(URI.create(targetInstance + "/health"))
             .build();
 
         HttpResponse<String> httpResponse = httpClient.send(request, BodyHandlers.ofString());
