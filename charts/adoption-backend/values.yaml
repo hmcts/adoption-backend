@@ -1,4 +1,11 @@
 java:
   applicationPort: 4550
+  ingressHost: adoption-backend-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
   environment:
     image: 'hmctspublic.azurecr.io/adoption/backend:latest'
+  aadIdentityName: adoption
+    keyVaults:
+      adoption:
+        resourceGroup: adoption
+        secrets:
+          - AppInsightsInstrumentationKey
