@@ -10,17 +10,15 @@ services:
         - no_proxy
     image: hmctspublic.azurecr.io/adoption/backend
     environment:
-      # these environment variables are used by java-logging library
-      - ROOT_APPENDER
-      - JSON_CONSOLE_PRETTY_PRINT
-      - ROOT_LOGGING_LEVEL
-      - REFORM_SERVICE_TYPE
-      - REFORM_SERVICE_NAME
-      - REFORM_TEAM
-      - REFORM_ENVIRONMENT
-      - LOGBACK_DATE_FORMAT
-      - LOGBACK_REQUIRE_THREAD
-      - LOGBACK_REQUIRE_ALERT_LEVEL=false
-      - LOGBACK_REQUIRE_ERROR_CODE=false
+      - IDAM_API_URL=http://idam-api:5000
+      - CORE_CASE_DATA_API_URL=http://ccd-data-store-api:4452
+      - IDAM_S2S_AUTH_URL=http://service-auth-provider-api:8080
+      - SPRING_PROFILES_ACTIVE=local
     ports:
       - $SERVER_PORT:$SERVER_PORT
+    networks:
+      - default
+      - ccd-network
+networks:
+  ccd-network:
+    external: true
