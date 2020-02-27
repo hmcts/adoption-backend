@@ -1,4 +1,10 @@
+tags:
+  adoption-ccd-stack: false
+  ccd-idam-pr: false
+
 java:
   applicationPort: 4550
+  ingressHost: adoption-backend-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
+  aadIdentityName: adoption
   environment:
     image: 'hmctspublic.azurecr.io/adoption/backend:latest'
