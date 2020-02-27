@@ -35,7 +35,7 @@ class StartCaseControllerTest {
         when(coreCaseDataService.startCase(userAuthToken)).thenReturn(CaseDetails.builder().build());
 
         mockMvc.perform(post("/start-a-case")
-            .header("authorisation", userAuthToken))
+            .header("authorization", userAuthToken))
             .andExpect(status().is2xxSuccessful());
     }
 }
