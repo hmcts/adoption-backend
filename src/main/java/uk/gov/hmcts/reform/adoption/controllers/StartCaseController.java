@@ -16,7 +16,7 @@ public class StartCaseController {
     private final CoreCaseDataService coreCaseDataService;
 
     @PostMapping("start-a-case")
-    public CaseDetails startCase(@RequestHeader String authorisation){
+    public CaseDetails startCase(@RequestHeader String authorisation) {
         return coreCaseDataService.startCase(authorisation);
     }
 }
