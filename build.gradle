@@ -167,6 +167,8 @@ dependencies {
   compile group: 'org.springframework.security', name: 'spring-security-oauth2-resource-server'
   compile group: 'org.springframework.security', name: 'spring-security-oauth2-jose'
 
+  compile group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '8.6' // override to fix vulnerability issue (CVE-2019-17195)
+
   compile group: 'io.springfox', name: 'springfox-swagger2', version: versions.springfoxSwagger
 
   compile group: 'uk.gov.hmcts.reform', name: 'health-spring-boot-starter', version: '0.0.5'
