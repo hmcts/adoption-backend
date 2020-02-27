@@ -9,7 +9,6 @@ import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 
 @SpringBootApplication
 @EnableCircuitBreaker
-@EnableFeignClients(clients = {CoreCaseDataApi.class, ServiceAuthorisationApi.class})
 @SuppressWarnings("HideUtilityClassConstructor") // Spring needs a constructor, its not a utility class
 public class Application {
 
