@@ -3,9 +3,6 @@ package uk.gov.hmcts.reform.adoption;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.cloud.openfeign.EnableFeignClients;
-import uk.gov.hmcts.reform.authorisation.ServiceAuthorisationApi;
-import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 
 @SpringBootApplication
 @EnableCircuitBreaker
