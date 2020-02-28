@@ -8,3 +8,8 @@ java:
   aadIdentityName: adoption
   environment:
     image: 'hmctspublic.azurecr.io/adoption/backend:latest'
+  keyVaults:
+    adoption:
+      resourceGroup: adoption
+      secrets:
+        - AppInsightsInstrumentationKey
