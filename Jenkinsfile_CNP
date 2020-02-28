@@ -25,8 +25,26 @@ def otherSecrets = [
   'ccd-${env}': [
     secret('ccd-api-gateway-oauth2-client-secret', 'CCD_API_GATEWAY_IDAM_CLIENT_SECRET'),
     secret('postcode-info-address-lookup-token', 'ADDRESS_LOOKUP_TOKEN')
+  ],
+  'adoption-${env}': [
+    secret('ccd-importer-username', 'CCD_CONFIGURER_IMPORTER_USERNAME'),
+    secret('ccd-importer-password', 'CCD_CONFIGURER_IMPORTER_PASSWORD')
   ]
 ]
+
+def test(env) {
+  withCredentials([usernamePassword(credentialsId: 'jenkins-github-hmcts-api-token', usernameVariable: 'USERNAME', passwordVariable: 'BEARER_TOKEN')]) {
+    sh """        
+        git clone https://github.com/hmcts/fpl-ccd-configuration.git --branch dev/tomek-test
+        
+        
+        eval \$(./fpl-ccd-configuration/bin/variables/load-${env}-environment-variables.sh ${CHANGE_ID})
+        ./fpl-ccd-configuration/bin/configurer/add-roles.sh
+        ./fpl-ccd-configuration/bin/configurer/import-ccd-definition.sh
+        
+       """
+  }
+}
 
 withPipeline(type, product, component) {
 
@@ -42,10 +60,11 @@ withPipeline(type, product, component) {
   }
 
   before('smoketest:aat') {
-      env.URL = "https://adoption-backend-staging.service.core-compute-aat.internal"
-    }
+    env.URL = "https://adoption-backend-staging.service.core-compute-aat.internal"
+  }
 
   before('smoketest:preview') {
+    test("preview")
     env.URL="https://adoption-backend-pr-${CHANGE_ID}.service.core-compute-preview.internal"
   }
 }
