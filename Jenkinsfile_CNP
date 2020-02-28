@@ -42,7 +42,7 @@ withPipeline(type, product, component) {
   }
 
   before('smoketest:aat') {
-      env.URL = "https://adoption-backend-aat.service.core-compute-aat.internal"
+      env.URL = "https://adoption-backend-staging.service.core-compute-aat.internal"
     }
 
   before('smoketest:preview') {
