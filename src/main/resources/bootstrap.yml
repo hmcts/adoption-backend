@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    propertiesvolume:
+      prefixed: false
+      paths: /mnt/secrets/adoption
+      aliases:
+        adoption-idam-client-secret: idam.client.secret

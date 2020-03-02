@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import uk.gov.hmcts.reform.adoption.request.RequestData;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
@@ -32,6 +33,9 @@ class CoreCaseDataServiceTest {
     @Mock
     private IdamClient idamClient;
 
+    @Mock
+    private RequestData requestData;
+
     private CoreCaseDataService service;
 
     private static final String userAuthToken = "Bearer user-xyz";
@@ -41,12 +45,13 @@ class CoreCaseDataServiceTest {
 
     @BeforeEach
     void setup() {
-        service = new CoreCaseDataService(coreCaseDataApi, authTokenGenerator, idamClient);
+        service = new CoreCaseDataService(coreCaseDataApi, authTokenGenerator, idamClient, requestData);
 
         when(authTokenGenerator.generate()).thenReturn(serviceAuthToken);
         when(idamClient.getUserDetails(userAuthToken)).thenReturn(UserDetails.builder()
             .id(userId)
             .build());
+        when(requestData.authorisation()).thenReturn(userAuthToken);
     }
 
     @Test
@@ -57,7 +62,7 @@ class CoreCaseDataServiceTest {
                 .eventId(START_CASE_EVENT)
                 .build());
 
-        service.startCase(userAuthToken);
+        service.startCase();
 
         verify(coreCaseDataApi).submitForCitizen(
             userAuthToken,

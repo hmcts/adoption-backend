@@ -58,4 +58,38 @@ core_case_data:
 gateway:
   url: http://localhost:3453
 
+---
+
+spring:
+  profiles: integration-test
+  main:
+    allow-bean-definition-overriding: true
+
+idam:
+  api:
+    url: http://fake-idam-api
+  s2s-auth:
+    url: http://fake-service-auth-provider-api
+    totp_secret: AABBCCDDEEFFGGHH
+  client:
+    id: fake-service
+    redirect_uri: https://fake-service/oauth2/callback
+    secret: OOOOOOOOOOOOOOOO
+
+  idam:
+    client:
+      baseUrl: http://fake-idam-api
+  provider:
+    service:
+      client:
+        baseUrl: http://fake-service-api
+
+core_case_data:
+  api:
+    url: http://fake-ccd-data-store-api
+
+gateway:
+  url: http://fake-gateway
+
+
 

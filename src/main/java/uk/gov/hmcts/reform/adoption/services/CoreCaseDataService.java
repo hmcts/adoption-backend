@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.adoption.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uk.gov.hmcts.reform.adoption.request.RequestData;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
@@ -18,12 +19,14 @@ public class CoreCaseDataService {
     private final CoreCaseDataApi coreCaseDataApi;
     private final AuthTokenGenerator authTokenGenerator;
     private final IdamClient idamClient;
+    private final RequestData requestData;
 
     static final String JURISDICTION = "PUBLICLAW";
     static final String CASE_TYPE = "ADOPTION";
     static final String START_CASE_EVENT = "openCase";
 
-    public CaseDetails startCase(String authorisation) {
+    public CaseDetails startCase() {
+        String authorisation = requestData.authorisation();
         UserDetails userDetails = idamClient.getUserDetails(authorisation);
 
         StartEventResponse startEventResponse = coreCaseDataApi.startCase(

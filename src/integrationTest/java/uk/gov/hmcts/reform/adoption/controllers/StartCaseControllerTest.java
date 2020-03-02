@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ActiveProfiles("local")
+@ActiveProfiles("integration-test")
 @DisplayName("Start a case")
 @WebMvcTest(StartCaseController.class)
 @OverrideAutoConfiguration(enabled = true)
@@ -32,9 +32,9 @@ class StartCaseControllerTest {
     @Test
     @DisplayName("User can create a case")
     void userCanCreateCase() throws Exception {
-        when(coreCaseDataService.startCase(userAuthToken)).thenReturn(CaseDetails.builder().build());
+        when(coreCaseDataService.startCase()).thenReturn(CaseDetails.builder().build());
 
-        mockMvc.perform(post("/start-a-case")
+        mockMvc.perform(post("/case")
             .header("authorization", userAuthToken))
             .andExpect(status().is2xxSuccessful());
     }

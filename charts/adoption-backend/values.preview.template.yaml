@@ -4,6 +4,7 @@ tags:
 
 java:
   environment:
+    CORE_CASE_DATA_API_URL: http://${SERVICE_NAME}-data-store-api
   # Don't modify below here
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
