@@ -10,6 +10,8 @@ management:
       base-path: /
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: adoption-backend
 
@@ -21,8 +23,6 @@ idam:
 
 spring:
   profiles: local
-  main:
-    allow-bean-definition-overriding: true
   security:
     enabled: false
     oauth2:
@@ -62,8 +62,6 @@ gateway:
 
 spring:
   profiles: integration-test
-  main:
-    allow-bean-definition-overriding: true
 
 idam:
   api:

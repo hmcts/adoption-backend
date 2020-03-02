@@ -2,10 +2,6 @@ tags:
   adoption-ccd-stack: false
   ccd-idam-pr: false
 
-spring:
-  main:
-    allow-bean-definition-overriding: true
-
 java:
   image: hmctspublic.azurecr.io/adoption/backend:latest
   applicationPort: 4550
