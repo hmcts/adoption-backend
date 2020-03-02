@@ -164,9 +164,9 @@ dependencies {
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-json'
 
-  compile group: 'org.springframework.security', name: 'spring-security-config'
-  compile group: 'org.springframework.security', name: 'spring-security-oauth2-resource-server'
-  compile group: 'org.springframework.security', name: 'spring-security-oauth2-jose'
+  compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.2.2.RELEASE'
+  compile group: 'org.springframework.security', name: 'spring-security-oauth2-resource-server', version: '5.2.2.RELEASE'
+  compile group: 'org.springframework.security', name: 'spring-security-oauth2-jose',  version: '5.2.2.RELEASE'
 
   compile group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '8.6' // override to fix vulnerability issue (CVE-2019-17195)
 
