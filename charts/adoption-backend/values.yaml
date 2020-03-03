@@ -22,6 +22,3 @@ java:
       secrets:
         - AppInsightsInstrumentationKey
         - adoption-idam-client-secret
-    "s2s":
-      secrets:
-        - microservicekey-adoption-backend
