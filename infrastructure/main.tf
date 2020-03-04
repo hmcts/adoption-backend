@@ -7,9 +7,6 @@ locals {
   capacity      = "${var.env == "prod" || var.env == "sprod" || var.env == "aat" ? 2 : 1}"
   local_env     = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview") ? "aat" : "saat" : var.env}"
   vault_name    = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview") ? "${var.raw_product}-aat" : "${var.raw_product}-saat" : "${var.raw_product}-${var.env}"}"
-
-  # URLs
-  CORE_CASE_DATA_API_URL  = "http://ccd-data-store-api-${local.local_env}.service.${local.local_ase}.internal"
 }
 
 resource "azurerm_resource_group" "rg" {
@@ -22,6 +19,11 @@ resource "azurerm_resource_group" "rg" {
 data "azurerm_key_vault_secret" "idam_client_secret" {
   name      = "adoption-idam-client-secret"
   vault_uri = "${module.key-vault.key_vault_uri}"
+}
+
+data "azurerm_key_vault_secret" "temp-microservicekey-adoption-backend" {
+  name         = "temp-microservicekey-adoption-backend"
+  key_vault_id = module.key-vault.key_vault_id
 }
 
 resource "azurerm_application_insights" "appinsights" {

@@ -80,3 +80,7 @@ variable "idam_token_jwk_set_uri" {
   default = ""
 }
 
+variable "temp-microservicekey-adoption-backend" {
+  tpye = "string"
+}
+
