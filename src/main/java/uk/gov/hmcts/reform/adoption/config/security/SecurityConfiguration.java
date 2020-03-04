@@ -17,8 +17,8 @@ public class SecurityConfiguration {
             http
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .authorizeRequests()
-                    .antMatchers("/**")
-                    .authenticated();
+                    .antMatchers("/health").permitAll()
+                    .antMatchers("/**").authenticated();
         }
     }
 
