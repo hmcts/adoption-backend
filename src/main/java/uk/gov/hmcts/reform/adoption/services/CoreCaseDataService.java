@@ -21,7 +21,7 @@ public class CoreCaseDataService {
     private final IdamClient idamClient;
     private final RequestData requestData;
 
-    static final String JURISDICTION = "PUBLICLAW";
+    static final String JURISDICTION = "ADOPTION";
     static final String CASE_TYPE = "ADOPTION";
     static final String START_CASE_EVENT = "openCase";
 
