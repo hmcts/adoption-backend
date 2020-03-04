@@ -61,10 +61,6 @@ variable "idam_client_id" {
   type = "string"
 }
 
-variable "idam_client_redirect_uri" {
-  type = "string"
-}
-
 variable "security_enabled" {
   type = "string"
   default = "false"
@@ -79,8 +75,3 @@ variable "idam_token_jwk_set_uri" {
   type    = "string"
   default = ""
 }
-
-variable "temp-microservicekey-adoption-backend" {
-  tpye = "string"
-}
-

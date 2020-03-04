@@ -22,3 +22,4 @@ java:
       secrets:
         - AppInsightsInstrumentationKey
         - adoption-idam-client-secret
+        - temp-microservicekey-adoption-backend

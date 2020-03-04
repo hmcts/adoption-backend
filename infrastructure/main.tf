@@ -16,16 +16,6 @@ resource "azurerm_resource_group" "rg" {
   tags     = "${var.common_tags}"
 }
 
-data "azurerm_key_vault_secret" "idam_client_secret" {
-  name      = "adoption-idam-client-secret"
-  vault_uri = "${module.key-vault.key_vault_uri}"
-}
-
-data "azurerm_key_vault_secret" "temp-microservicekey-adoption-backend" {
-  name         = "temp-microservicekey-adoption-backend"
-  key_vault_id = module.key-vault.key_vault_id
-}
-
 resource "azurerm_application_insights" "appinsights" {
   name                = "${var.product}-appinsights-${var.env}"
   location            = "${var.appinsights_location}"
