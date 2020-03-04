@@ -11,5 +11,11 @@ public class CCDConfiguration implements CCDConfig<CaseData, State, UserRole> {
     @Override
     public void configure(
         ConfigBuilder<CaseData, State, UserRole> builder) {
+        builder.caseType("ADOPTION");
+
+        builder.event("openCase")
+            .initialState(State.Open)
+            .grant("CRU", UserRole.Citizen)
+            .grant("R", UserRole.AdoptionClerk);
     }
 }

@@ -1,0 +1,11 @@
+[
+  {
+    "LiveFrom" : "01/01/2017",
+    "CaseTypeID" : "ADOPTION",
+    "ElementLabel" : null,
+    "ListElementCode" : "name",
+    "ID" : "Applicant",
+    "SecurityClassification" : "Public",
+    "FieldType" : "Text"
+  }
+]
