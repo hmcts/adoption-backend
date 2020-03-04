@@ -1,0 +1,15 @@
+[
+  {
+    "LiveFrom": "01/01/2017",
+    "CaseTypeID": "ADOPTION",
+    "ID": "openCase",
+    "Name": "Start application",
+    "Description": "Create a new case",
+    "DisplayOrder": 1,
+    "PostConditionState": "Open",
+    "SecurityClassification": "Public",
+    "ShowSummary": "N",
+    "ShowEventNotes": "N",
+    "EndButtonLabel": "Save and continue"
+  }
+]

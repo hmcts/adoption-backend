@@ -1,0 +1,10 @@
+[
+  {
+    "LiveFrom": "01/01/2017",
+    "ID": "ADOPTION",
+    "Name": "Adoption",
+    "Description": "Adoption case",
+    "JurisdictionID": "ADOPTION",
+    "SecurityClassification": "Public"
+  }
+]

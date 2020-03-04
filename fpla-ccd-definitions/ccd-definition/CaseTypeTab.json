@@ -1,0 +1,11 @@
+[
+  {
+    "LiveFrom": "01/01/2017",
+    "CaseTypeID": "ADOPTION",
+    "TabID": "CaseHistory",
+    "TabLabel": "History",
+    "TabDisplayOrder": 1,
+    "CaseFieldID": "caseHistory",
+    "TabFieldDisplayOrder": 1
+  }
+]
