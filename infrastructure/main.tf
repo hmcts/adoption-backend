@@ -1,7 +1,6 @@
 provider "azurerm" {
   version = "=1.41.0"
 }
-
 locals {
   instance_size = "${var.env == "prod" || var.env == "sprod" || var.env == "aat" ? "I2" : "I1"}"
   capacity      = "${var.env == "prod" || var.env == "sprod" || var.env == "aat" ? 2 : 1}"
@@ -40,3 +39,6 @@ module "key-vault" {
   managed_identity_object_id = "${var.managed_identity_object_id}"
 }
 
+terraform {
+  backend "azurerm" {}
+}
