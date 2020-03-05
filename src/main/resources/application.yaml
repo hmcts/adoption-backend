@@ -88,6 +88,3 @@ core_case_data:
 
 gateway:
   url: http://fake-gateway
-
-
-
