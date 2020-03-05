@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.adoption.services;
+package uk.gov.hmcts.reform.adoption.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

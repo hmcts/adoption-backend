@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.adoption.controllers;
+package uk.gov.hmcts.reform.adoption.controller;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,7 @@ import org.springframework.boot.test.autoconfigure.OverrideAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
-import uk.gov.hmcts.reform.adoption.services.CoreCaseDataService;
+import uk.gov.hmcts.reform.adoption.service.CoreCaseDataService;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 
 import static org.mockito.Mockito.when;

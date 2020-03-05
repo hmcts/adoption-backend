@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.adoption.services;
+package uk.gov.hmcts.reform.adoption.service;
 
 import static java.util.UUID.randomUUID;
 

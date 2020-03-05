@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.adoption.services;
+package uk.gov.hmcts.reform.adoption.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,9 +18,9 @@ import uk.gov.hmcts.reform.idam.client.models.UserDetails;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static uk.gov.hmcts.reform.adoption.services.CoreCaseDataService.CASE_TYPE;
-import static uk.gov.hmcts.reform.adoption.services.CoreCaseDataService.JURISDICTION;
-import static uk.gov.hmcts.reform.adoption.services.CoreCaseDataService.START_CASE_EVENT;
+import static uk.gov.hmcts.reform.adoption.service.CoreCaseDataService.CASE_TYPE;
+import static uk.gov.hmcts.reform.adoption.service.CoreCaseDataService.JURISDICTION;
+import static uk.gov.hmcts.reform.adoption.service.CoreCaseDataService.START_CASE_EVENT;
 
 @ExtendWith(MockitoExtension.class)
 class CoreCaseDataServiceTest extends BaseTest {
