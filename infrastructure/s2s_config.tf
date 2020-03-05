@@ -4,7 +4,7 @@ data "azurerm_key_vault" "s2s_vault" {
 }
 
 data "azurerm_key_vault_secret" "source_microservicekey-adoption-backend" {
-  name         = "microservicekey-adoption-backened"
+  name         = "microservicekey-adoption-backend"
   key_vault_id = "${data.azurerm_key_vault.s2s_vault.id}"
 }
 
