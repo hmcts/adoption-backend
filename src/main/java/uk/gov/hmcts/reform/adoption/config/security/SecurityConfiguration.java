@@ -17,8 +17,14 @@ public class SecurityConfiguration {
             http
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .authorizeRequests()
-                    .antMatchers("/health", "/health/liveness").permitAll()
-                    .antMatchers("/**").authenticated();
+                .antMatchers(
+                    "/health",
+                    "/health/liveness",
+                    "/webjars/springfox-swagger-ui/**",
+                    "/swagger-resources/**",
+                    "/v2/**")
+                .permitAll()
+                .antMatchers("/**").authenticated();
         }
     }
 
@@ -30,8 +36,8 @@ public class SecurityConfiguration {
             http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests()
-                    .anyRequest()
-                    .permitAll();
+                .anyRequest()
+                .permitAll();
         }
     }
 }

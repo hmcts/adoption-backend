@@ -13,8 +13,6 @@ import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
 import uk.gov.hmcts.reform.ccd.client.model.Event;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
-import uk.gov.hmcts.reform.idam.client.IdamClient;
-import uk.gov.hmcts.reform.idam.client.models.UserDetails;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -32,9 +30,6 @@ class CoreCaseDataServiceTest extends BaseTest {
     private AuthTokenGenerator authTokenGenerator;
 
     @Mock
-    private IdamClient idamClient;
-
-    @Mock
     private RequestData requestData;
 
     @InjectMocks
@@ -43,8 +38,8 @@ class CoreCaseDataServiceTest extends BaseTest {
     @BeforeEach
     void setup() {
         when(authTokenGenerator.generate()).thenReturn(serviceAuthToken);
-        when(idamClient.getUserDetails(userAuthToken)).thenReturn(UserDetails.builder().id(userId).build());
         when(requestData.authorisation()).thenReturn(userAuthToken);
+        when(requestData.userId()).thenReturn(userId);
     }
 
     @Test

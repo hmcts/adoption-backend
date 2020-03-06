@@ -10,15 +10,12 @@ import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.Event;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
-import uk.gov.hmcts.reform.idam.client.IdamClient;
-import uk.gov.hmcts.reform.idam.client.models.UserDetails;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CoreCaseDataService {
     private final CoreCaseDataApi coreCaseDataApi;
     private final AuthTokenGenerator authTokenGenerator;
-    private final IdamClient idamClient;
     private final RequestData requestData;
 
     static final String JURISDICTION = "ADOPTION";
@@ -27,7 +24,6 @@ public class CoreCaseDataService {
 
     public CaseDetails startCase() {
         String authorisation = requestData.authorisation();
-        UserDetails userDetails = idamClient.getUserDetails(authorisation);
 
         StartEventResponse startEventResponse = coreCaseDataApi.startCase(
             authorisation,
@@ -44,7 +40,7 @@ public class CoreCaseDataService {
         return coreCaseDataApi.submitForCitizen(
             authorisation,
             authTokenGenerator.generate(),
-            userDetails.getId(),
+            requestData.userId(),
             JURISDICTION,
             CASE_TYPE,
             false,
