@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.adoption.models;
+package uk.gov.hmcts.reform.adoption.model;
 
 import org.junit.jupiter.api.Test;
 

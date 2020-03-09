@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    propertiesvolume:
+      prefixed: false
+      paths: /mnt/secrets/adoption
+      aliases:
+        adoption-idam-client-secret: idam.client.secret
+        microservicekey-adoption-backend: idam.s2s-auth.totp_secret
