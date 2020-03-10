@@ -3,14 +3,11 @@
 [![Build Status](https://travis-ci.org/hmcts/adoption-backend.svg?branch=master)](https://travis-ci.org/hmcts/adoption-backend)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=uk.gov.hmcts.reform%3Aadoption-backend&metric=alert_status)](https://sonarcloud.io/dashboard?id=uk.gov.hmcts.reform%3Aadoption-backend)
 
-
 ### Contents:
 
 - [Prerequisites](#prerequisites)
-- [Running application in IDE](#using-intellij-ide)
-- [Running application in Docker](#using-docker)
+- [Running application](#running-the-application)
 - [Upload CCD definition files to data store](#ccd-definition-files)
-
 
 ## Pre-requisites
 
@@ -18,47 +15,38 @@
  * Git installed
  * [Docker](https://www.docker.com/products/docker-desktop)
 
-## Running adoption-backend
 
-  * Clone project
+## Running the application
+To clone the project:
 
-    ```markdown
-    git clone https://github.com/hmcts/adoption-backend.git
-    ```
+```markdown
+git clone https://github.com/hmcts/adoption-backend.git
+```
 
-### Using intelliJ IDE
+### Running application in IDE
 
 * Open Project with intelliJ IDE
 * Setup ``Run Configuration`` for project. (IntelliJ _should_ automatically detect the `Application.java` file)
-    * For ``Environment variables`` use `spring.profiles.active=local`
+* For ``Environment variables`` use `spring.profiles.active=local`
 * Click on ``Run`` and the application will be started.
-* Verify application is running by visiting ``http://localhost:4550/health`` from a browser or by using ``curl`` using the CLI
 
-### Using Docker
+### Running application in Docker
 
-#### Building and Running the application
+To start the application in docker run the following command:
 
 ```bash
   ./bin/run-in-docker.sh
 ```
-
-The above command assumes the following are set as variables `DB_PASSWORD=${DB_PASSWORD}`, `S2S_URL=${S2S_URL}`, `S2S_SECRET=${S2S_SECRET}`
 
 To bring the application down and clear volumes run:
 
 ```shell script
 docker-compose down -v
 ```
----
 
-Either of the above commands will start the API on `localhost:4550`.
+### Verify Application is Up & Running
 
-In order to test if the application is up, you can call its health endpoint:
-
-```shell script
-  curl http://localhost:4550/health
-```
-
+You can verify application is running by visiting ``http://localhost:4550/health`` from a browser or by using ``curl`` via the CLI.
 You should get a response similar to this:
 
 ```json
@@ -73,7 +61,9 @@ To upload definition files run:
 ./bin/configurer/import-ccd-definition.sh
 ```
 
-This will upload a ccd definition to definition store and generate an xslx within build/ccd-development-config
+This will upload a ccd definition to ccd definition store api.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
+
+### Contents:
