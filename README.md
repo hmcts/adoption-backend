@@ -23,7 +23,6 @@
 * Setup ``Run Configuration`` for project. (IntelliJ _should_ automatically detect the `Application.java` file)
     * For ``Environment variables`` use `spring.profiles.active=local`
 * Click on ``Run`` and the application will be started.
-* Verify application is running by visiting ``http://localhost:4550/health`` from a browser or by using ``curl`` using the CLI
 
 ### Using Docker
 
@@ -33,27 +32,20 @@
   ./bin/run-in-docker.sh
 ```
 
-The above command assumes the following are set as variables `DB_PASSWORD=${DB_PASSWORD}`, `S2S_URL=${S2S_URL}`, `S2S_SECRET=${S2S_SECRET}`
+### Verify Application is Up & Running
 
-To bring the application down and clear volumes run:
-
-```shell script
-docker-compose down -v
-```
----
-
-Either of the above commands will start the API on `localhost:4550`.
-
-In order to test if the application is up, you can call its health endpoint:
-
-```shell script
-  curl http://localhost:4550/health
-```
-
+You can verify application is running by visiting ``http://localhost:4550/health`` from a browser or by using ``curl`` via the CLI.
 You should get a response similar to this:
 
 ```json
   {"status":"UP","diskSpace":{"status":"UP","total":249644974080,"free":137188298752,"threshold":10485760}}
+```
+
+## Bringing It all DOWN
+To bring the application down and clear volumes run:
+
+```shell script
+docker-compose down -v
 ```
 
 ## License
