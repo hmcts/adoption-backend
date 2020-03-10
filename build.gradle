@@ -164,7 +164,7 @@ dependencies {
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-json'
 
-  compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.2.2.RELEASE'
+  compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.3.0.RELEASE'
   compile group: 'org.springframework.security', name: 'spring-security-oauth2-resource-server', version: '5.2.2.RELEASE'
   compile group: 'org.springframework.security', name: 'spring-security-oauth2-jose',  version: '5.2.2.RELEASE'
 
