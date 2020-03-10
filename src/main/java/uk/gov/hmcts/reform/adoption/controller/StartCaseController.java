@@ -16,6 +16,10 @@ public class StartCaseController {
 
     @PostMapping("case")
     public CaseDetails startCase() {
-        return coreCaseDataService.startCase();
+        if (coreCaseDataService.getCases().getTotal() != 0) {
+            return coreCaseDataService.getCases().getCases().get(0);
+        } else {
+            return coreCaseDataService.startCase();
+        }
     }
 }
