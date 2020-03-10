@@ -58,7 +58,8 @@ variable "appinsights_location" {
 }
 
 variable "idam_client_id" {
-  type = "string"
+  type    = "string"
+  default = "adoption"
 }
 
 variable "security_enabled" {
