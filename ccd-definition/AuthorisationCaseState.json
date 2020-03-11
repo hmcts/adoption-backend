@@ -1,0 +1,16 @@
+[
+  {
+    "LiveFrom": "01/01/2017",
+    "CaseTypeID": "ADOPTION",
+    "CaseStateID": "Open",
+    "UserRole": "citizen",
+    "CRUD": "CRU"
+  },
+  {
+    "LiveFrom": "01/01/2017",
+    "CaseTypeID": "ADOPTION",
+    "CaseStateID": "Open",
+    "UserRole": "caseworker-adoption-clerk",
+    "CRUD": "CRU"
+  }
+]

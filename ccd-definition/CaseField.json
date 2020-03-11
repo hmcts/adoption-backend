@@ -1,0 +1,26 @@
+[
+  {
+    "LiveFrom": "01/01/2017",
+    "CaseTypeID": "ADOPTION",
+    "ID": "caseHistory",
+    "Label": " ",
+    "FieldType": "CaseHistoryViewer",
+    "SecurityClassification": "Public"
+  },
+  {
+    "LiveFrom": "01/01/2017",
+    "CaseTypeID": "ADOPTION",
+    "ID": "caseIDReference",
+    "Label": "Case ID",
+    "FieldType": "Text",
+    "SecurityClassification": "Public"
+  },
+  {
+    "LiveFrom": "01/01/2017",
+    "CaseTypeID": "ADOPTION",
+    "ID": "creatorId",
+    "Label": "IDAM ID of the citizen who created the case",
+    "FieldType": "Text",
+    "SecurityClassification": "Public"
+  }
+]
