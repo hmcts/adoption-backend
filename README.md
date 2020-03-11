@@ -1,6 +1,6 @@
 # Adoption Backend
 
-[![Build Status](https://travis-ci.org/hmcts/adoption-backend.svg?branch=master)](https://travis-ci.org/hmcts/adoption-backend)
+[![Build Status](https://travis-ci.com/hmcts/adoption-backend.svg?branch=master)](https://travis-ci.com/hmcts/adoption-backend)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=uk.gov.hmcts.reform%3Aadoption-backend&metric=alert_status)](https://sonarcloud.io/dashboard?id=uk.gov.hmcts.reform%3Aadoption-backend)
 
 ### Contents:
