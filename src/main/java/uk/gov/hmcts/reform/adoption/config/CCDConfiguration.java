@@ -16,6 +16,8 @@ public class CCDConfiguration implements CCDConfig<CaseData, State, UserRole> {
         builder.event("openCase")
             .initialState(State.Open)
             .grant("CRU", UserRole.Citizen)
-            .grant("R", UserRole.AdoptionClerk);
+            .grant("R", UserRole.AdoptionClerk)
+            .fields()
+            .optional(CaseData::getApplicant);
     }
 }
