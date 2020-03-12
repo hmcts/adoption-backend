@@ -12,12 +12,14 @@ public class CCDConfiguration implements CCDConfig<CaseData, State, UserRole> {
     public void configure(
         ConfigBuilder<CaseData, State, UserRole> builder) {
         builder.caseType("ADOPTION");
+        builder.grant(State.Open, "CRUD", UserRole.Admin);
 
         builder.event("openCase")
-            .initialState(State.Open)
+            .forStates(State.Open, State.Closed)
             .grant("CRU", UserRole.Citizen)
             .grant("R", UserRole.AdoptionClerk)
             .fields()
-            .optional(CaseData::getApplicant);
+            .optional(CaseData::getApplicant)
+            .mandatory(CaseData::getFoo);
     }
 }

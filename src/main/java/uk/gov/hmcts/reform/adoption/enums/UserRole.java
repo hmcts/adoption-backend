@@ -4,7 +4,8 @@ import uk.gov.hmcts.ccd.sdk.types.Role;
 
 public enum UserRole implements Role {
     Citizen("citizen"),
-    AdoptionClerk("caseworker-adoption-clerk");
+    AdoptionClerk("caseworker-adoption-clerk"),
+    Admin("caseworker-admin");
 
     String role;
     UserRole(String role) {

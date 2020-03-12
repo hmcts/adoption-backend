@@ -6,4 +6,5 @@ import lombok.Data;
 public class CaseData {
 
     private Applicant applicant;
+    private String foo;
 }
