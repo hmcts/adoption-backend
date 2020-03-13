@@ -5,12 +5,5 @@
     "CaseFieldID": "caseHistory",
     "UserRole": "caseworker-adoption-clerk",
     "CRUD": "R"
-  },
-  {
-    "LiveFrom": "01/01/2017",
-    "CaseTypeID": "ADOPTION",
-    "CaseFieldID": "caseIDReference",
-    "UserRole": "caseworker-adoption-clerk",
-    "CRUD": "R"
   }
 ]

@@ -1,0 +1,16 @@
+[
+  {
+    "ShowEventNotes" : "N",
+    "PreConditionState(s)" : "OPEN",
+    "LiveFrom" : "01/01/2017",
+    "CaseTypeID" : "ADOPTION",
+    "PostConditionState" : "OPEN",
+    "Description" : "Create a new case",
+    "DisplayOrder" : 1,
+    "EndButtonLabel" : "Save and continue",
+    "ShowSummary" : "N",
+    "ID" : "openCase",
+    "SecurityClassification" : "Public",
+    "Name" : "Start application"
+  }
+]
