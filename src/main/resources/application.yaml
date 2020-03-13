@@ -8,31 +8,75 @@ management:
   endpoints:
     web:
       base-path: /
-      exposure:
-        include: health, info, prometheus
 
-#If you use a database then uncomment below lines and update db properties accordingly
 spring:
   application:
     name: adoption-backend
-#  datasource:
-#    driver-class-name: org.postgresql.Driver
-#    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}${DB_OPTIONS:}
-#    username: ${DB_USER_NAME}
-#    password: ${DB_PASSWORD}
-#    properties:
-#      charSet: UTF-8
-#    hikari:
-#      minimumIdle: 2
-#      maximumPoolSize: 10
-#      idleTimeout: 10000
-#      poolName: {to-be-defined}HikariCP
-#      maxLifetime: 7200000
-#      connectionTimeout: 30000
-#  jpa:
-#    properties:
-#      hibernate:
-#        jdbc:
-#          lob:
-#            # silence the 'wall-of-text' - unnecessary exception throw about blob types
-#            non_contextual_creation: true
+
+idam:
+  s2s-auth:
+    microservice: adoption
+
+---
+
+spring:
+  profiles: local
+  security:
+    enabled: true
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://fr-am:8080/openam/oauth2/hmcts
+          jwk-set-uri: http://localhost:5000/o/jwks
+
+idam:
+  api:
+    url: http://localhost:5000
+  s2s-auth:
+    url: http://localhost:4502
+    totp_secret: AABBCCDDEEFFGGHH
+  client:
+    id: adoption
+    redirect_uri: https://localhost:9000/oauth2/callback
+    secret: OOOOOOOOOOOOOOOO
+
+auth:
+  idam:
+    client:
+      baseUrl: http://localhost:5000
+  provider:
+    service:
+      client:
+        baseUrl: http://localhost:4502
+
+core_case_data:
+  api:
+    url: http://localhost:4452
+
+---
+
+spring:
+  profiles: integration-test
+
+idam:
+  api:
+    url: http://fake-idam-api
+  s2s-auth:
+    url: http://fake-service-auth-provider-api
+    totp_secret: AABBCCDDEEFFGGHH
+  client:
+    id: fake-service
+    redirect_uri: https://fake-service/oauth2/callback
+    secret: OOOOOOOOOOOOOOOO
+
+  idam:
+    client:
+      baseUrl: http://fake-idam-api
+  provider:
+    service:
+      client:
+        baseUrl: http://fake-service-api
+
+core_case_data:
+  api:
+    url: http://fake-ccd-data-store-api
