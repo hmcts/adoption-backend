@@ -65,5 +65,3 @@ This will upload a ccd definition to ccd definition store api.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
-
-### Contents:
